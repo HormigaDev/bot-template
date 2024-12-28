@@ -1,0 +1,8 @@
+import { EmbedBuilder, Colors, Client, Message } from 'discord.js';
+import { Bot } from '../../bot';
+
+export default {
+    name: '',
+    alias: [],
+    async execute(bot: Bot, message: Message, args: string[]) {},
+};
