@@ -1,7 +1,6 @@
-import colors from 'chalk';
 import { CacheType, ChannelType, Events, Interaction, InteractionType } from 'discord.js';
 import { bot } from '../bot';
-import { SlashCommand } from '@/interfaces/SlashCommand';
+import { SlashCommand } from '@/types/SlashCommand';
 
 bot.on(Events.InteractionCreate, async (interaction: Interaction<CacheType>) => {
     if (interaction.channel?.type === ChannelType.DM) return;
@@ -15,11 +14,9 @@ bot.on(Events.InteractionCreate, async (interaction: Interaction<CacheType>) => 
             await cmd.execute(interaction);
         } catch (err) {
             console.log(
-                colors.red(
-                    "Ocurrió un error al procesar el comando '{}'".replace(
-                        '{}',
-                        interaction.commandName,
-                    ),
+                "Ocurrió un error al procesar el comando '{}'".replace(
+                    '{}',
+                    interaction.commandName,
                 ),
                 err,
             );

@@ -1,7 +1,10 @@
 import { SlashCommandBuilder, CommandInteraction } from 'discord.js';
+import { SlashCommand } from '@/types/SlashCommand';
 
-export default {
-    name: '',
-    data: new SlashCommandBuilder().setName(''),
-    async execute(interaction: CommandInteraction) {},
+export const cmd: SlashCommand = {
+    name: '<name>',
+    data: new SlashCommandBuilder().setName('<name>'),
+    async execute(interaction: CommandInteraction) {
+        // Aquí el código del comando
+    },
 };
