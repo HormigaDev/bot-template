@@ -1,5 +1,6 @@
 import { Bot } from '@/bot';
 import { Message } from 'discord.js';
+import { CommandCategories } from './CommandCategories';
 
 export type RawCommand = {
     name: string;
@@ -11,5 +12,6 @@ export type RawCommand = {
     adminOnly?: boolean;
     ownerOnly?: boolean;
     developerOnly?: boolean;
+    category?: CommandCategories;
     execute: (bot: Bot, message: Message, args: string[]) => Promise<void>;
 };
