@@ -30,7 +30,7 @@ export const SlashCommandsHandler = (bot: Bot) => {
                     'El ID del bot no ha sido definido en las variables de entorno o el archivo .env',
                 );
             }
-            await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: {} });
+            await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: data });
             console.log('Comandos de barra cargados correctamente!');
         } catch (err) {
             console.log('Error al actualizar los comandos de barra: ', err);
