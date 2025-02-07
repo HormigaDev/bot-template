@@ -2,7 +2,7 @@ import { Bot } from '@/bot';
 import { Message } from 'discord.js';
 import { CommandCategories } from './CommandCategories';
 
-export type RawCommand = {
+export type TextCommand = {
     name: string;
     alias: string[];
     description?: string;

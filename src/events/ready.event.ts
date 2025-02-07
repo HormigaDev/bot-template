@@ -1,10 +1,11 @@
-import { Events, PresenceUpdateStatus, ActivityType } from 'discord.js';
-import { bot } from '../bot';
+import { Events, PresenceUpdateStatus, ActivityType, Client } from 'discord.js';
 
-bot.on(Events.ClientReady, () => {
-    console.log(`Sesión iniciada como "${bot.user!.username}"`);
-    bot.user!.setActivity('BBEL Studios', {
-        type: ActivityType.Watching,
+export default function (client: Client) {
+    client.on(Events.ClientReady, () => {
+        console.log(`Sesión iniciada como "${client.user!.username}"`);
+        client.user!.setActivity('BBEL Studios', {
+            type: ActivityType.Watching,
+        });
+        client.user!.setStatus(PresenceUpdateStatus.Online);
     });
-    bot.user!.setStatus(PresenceUpdateStatus.Online);
-});
+}
