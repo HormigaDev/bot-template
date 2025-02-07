@@ -1,12 +1,15 @@
 import { Client, Collection } from 'discord.js';
+import { TextCommand } from './types/TextCommand';
+import { SlashCommand } from './types/SlashCommand';
 
-export class Bot extends Client {
+export class Bot {
     commands = {
-        raw: new Collection(),
-        slash: new Collection(),
+        text: new Collection<string, TextCommand>(),
+        slash: new Collection<string, SlashCommand>(),
     };
-    constructor({ intents }: { intents: number[] }) {
-        super({ intents });
+    client: Client;
+    constructor() {
+        this.client = new Client({ intents: [3276799] });
     }
 }
 
@@ -14,4 +17,4 @@ export class Bot extends Client {
  * Estos intentos son TODOS los intentos en Discord, si necesitas otros intentos puedes buscar en google
  * un intents calculator y ver cual se adapta a tu necesidad
  */
-export const bot = new Bot({ intents: [3276799] });
+export const bot = new Bot();

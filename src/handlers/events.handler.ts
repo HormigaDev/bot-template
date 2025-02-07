@@ -1,11 +1,10 @@
-import { readdirSync } from 'fs';
-import { join } from 'path';
+import { Client } from 'discord.js';
+import readyEvent from '@/events/ready.event';
+import messageEvent from '@/events/message.event';
+import interactionEvent from '@/events/interaction.event';
 
-export const EventsHandler = async () => {
-    const files = readdirSync(join(__dirname, '../events')).filter((f) => f.endsWith('.ts'));
-    console.log('Cargando eventos...');
-    for (const file of files) {
-        await import(join(__dirname, '../events/', file));
-    }
-    console.log('Eventos cargados con éxito!');
+export const EventsHandler = async (client: Client) => {
+    readyEvent(client);
+    messageEvent(client);
+    interactionEvent(client);
 };

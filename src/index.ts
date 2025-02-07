@@ -2,10 +2,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 import { server } from './server';
 import { bot } from './bot';
-import { RawCommandsHandler } from './handlers/raw.handler';
+import { TextCommandsHandler } from './handlers/text.handler';
 import { SlashCommandsHandler } from './handlers/slash.handler';
 import { EventsHandler } from './handlers/events.handler';
+import { Client } from 'discord.js';
 // import { connectDB } from './database/db';
+
+const client = new Client({ intents: [3276799] });
 
 async function main() {
     /**
@@ -15,23 +18,23 @@ async function main() {
     // await connectDB();
 
     // Cargar los comandos
-    RawCommandsHandler(bot);
+    TextCommandsHandler(bot);
     SlashCommandsHandler(bot);
-    EventsHandler();
 
     //Levantar el servidor
     server.listen(server.get('port'), () => {
         console.log('El bot está corriendo en el puerto: {}'.replace('{}', server.get('port')));
     });
-
-    if (!process.env.TOKEN) {
-        throw new Error(
-            'El token del bot no ha sido definido en las variables de entorno o en el archivo .env',
-        );
-    }
-
-    //Iniciar el bot
-    bot.login(process.env.TOKEN);
 }
+EventsHandler(client);
+
+if (!process.env.TOKEN) {
+    throw new Error(
+        'El token del bot no ha sido definido en las variables de entorno o en el archivo .env',
+    );
+}
+
+//Iniciar el bot
+client.login(process.env.TOKEN);
 
 main();

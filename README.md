@@ -76,10 +76,10 @@ npm run start
 
 ### Comandos Raw (comandos de texto)
 
-Los comando de texto (raw) tienen propiedades con los cuales podrás cambiar su comportamiento y alcance.
+Los comando de texto (text) tienen propiedades con los cuales podrás cambiar su comportamiento y alcance.
 
 ```typescript
-type RawCommand = {
+type TextCommand = {
     name: string;
     alias: string[];
     description?: string;

@@ -1,8 +1,8 @@
 import { EmbedBuilder, Colors, Client, Message } from 'discord.js';
 import { Bot } from '@/bot';
-import { RawCommand } from '@/types/RawCommand';
+import { TextCommand } from '@/types/TextCommand';
 
-export const cmd: RawCommand = {
+export const cmd: TextCommand = {
     name: '<name>',
     alias: [],
     async execute(bot: Bot, message: Message, args: string[]) {
