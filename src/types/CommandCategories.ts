@@ -1,1 +1,1 @@
-export type CommandCategories = 'admin' | 'info'; // agrega más según necesites
+export type CommandCategories = 'admin' | 'information'; // agrega más según necesites

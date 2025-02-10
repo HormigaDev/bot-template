@@ -2,6 +2,7 @@ import { bot } from '../bot';
 import { TextCommand } from '@/types/TextCommand';
 import { ChannelType, Client, Events, Message } from 'discord.js';
 import { developersIds, permissionNames, Permissions } from '@/config';
+import { Reply } from '@/types/Reply';
 
 export default function (client: Client) {
     client.on(Events.MessageCreate, async (message: Message) => {
@@ -67,11 +68,17 @@ export default function (client: Client) {
                 }
             }
             await cmd.execute(bot, message, args);
-        } catch (err) {
-            console.log(
-                "Ocurrió un error al intentar ejecutar el comando '{}': ".replace('{}', command),
-                err,
-            );
+        } catch (error) {
+            if (error instanceof Reply) {
+                await message.reply(error.message);
+            } else {
+                try {
+                    await message.reply('Ocurrió un error inesperado al procesar el comando.');
+                } catch (err) {
+                    console.log(err);
+                }
+                console.log(error);
+            }
         }
     });
 }
